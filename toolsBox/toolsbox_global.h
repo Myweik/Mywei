@@ -1,0 +1,12 @@
+#ifndef TOOLSBOX_GLOBAL_H
+#define TOOLSBOX_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(TOOLSBOX_LIBRARY)
+#  define TOOLSBOXSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define TOOLSBOXSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // TOOLSBOX_GLOBAL_H
