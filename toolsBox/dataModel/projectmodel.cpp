@@ -38,7 +38,7 @@ QStringList ProjectModel::findProjectNameList(QString projectPath)
 //-------------------------------------------
 void ProjectModel::initTask()
 {
-    qDebug() << "------------------------ProjectModel::initTask()" << _projectFileList;
+    qDebug() << "------------------------ProjectModel::initTask()" << _projectFileList << (int)QThread::currentThreadId();
 }
 
 void ProjectModel::addTask()

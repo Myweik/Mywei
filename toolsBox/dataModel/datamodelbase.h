@@ -46,17 +46,20 @@ public:
     bool           addChild(QString name, DataModelBase* base);
     bool           removeChild(QString name);
 
+    /* 添加任务到线程 */
     void           sendTask(Data_Task_TYPE Type);
     /* 子类可复用的方法 */
+    virtual MOUNT_TYPE type()=0;
+    /* 在线程中执行的方法 */
     virtual void initTask()=0;
     virtual void addTask()=0;
     virtual void updataTask()=0;
     virtual void removeTask()=0;
-    virtual MOUNT_TYPE type()=0;
 signals:
 
 public slots:
-
+protected:
+    QString _projectName; //项目名 -- 数据库名
 protected:
     DataModelBase* _parent;
     QMap<QString, DataModelBase*> _childMap;
@@ -91,7 +94,7 @@ protected:
 class DataModelTask : public Task
 {
 public:
-    explicit DataModelTask(Data_Task_TYPE type,  DataModelBase* data);
+    explicit DataModelTask(Data_Task_TYPE type,  DataModelBase* object);
 
     void run();
 signals:
@@ -99,7 +102,7 @@ signals:
 public slots:
 
 private:
-    DataModelBase *_data;
+    DataModelBase *_object;
 };
 
 #endif // DATAMODELBASE_H

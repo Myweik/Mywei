@@ -6,6 +6,7 @@
 DataModelBase::DataModelBase(QObject *parent)
     : QObject(parent)
     , _parent(nullptr)
+    , _projectName("")
 {
 
 }
@@ -64,27 +65,27 @@ void DataModelBase::sendTask(Data_Task_TYPE Type)
 
 /* ------------------------------------[DataModelTask]--------------------------------------- */
 
-DataModelTask::DataModelTask(Data_Task_TYPE type, DataModelBase *data)
-    : _data(data)
+DataModelTask::DataModelTask(Data_Task_TYPE type, DataModelBase *object)
+    : _object(object)
 {
     _type = type;
 }
 
 void DataModelTask::run()
 {
-    if(_data){
+    if(_object){
         switch ((Data_Task_TYPE)_type) {
         case Data_Task_Init:
-            _data->initTask();
+            _object->initTask();
             break;
         case Data_Task_Add:
-            _data->addTask();
+            _object->addTask();
             break;
         case Data_Task_Updata:
-            _data->updataTask();
+            _object->updataTask();
             break;
         case Data_Task_Remove:
-            _data->removeTask();
+            _object->removeTask();
             break;
         }
     }
